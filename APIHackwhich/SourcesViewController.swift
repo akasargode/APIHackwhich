@@ -66,5 +66,16 @@ class SourcesViewController: UITableViewController {
         cell.detailTextLabel?.text = source["description"]
         return cell
     }
+    
+    @IBAction func onTappedDoneButton(_ sender: Any) {
+        exit(0)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dvc = segue.destination as! ArticleViewController
+        let index = tableView.indexPathForSelectedRow?.row
+        dvc.source = sources[index!]
+        dvc.apiKey = apiKey
+    }
 }
 
